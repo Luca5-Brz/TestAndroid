@@ -108,10 +108,9 @@ public class MainActivity extends AppCompatActivity {
 
         if(prenom != null){
             if(score != -1){
-                mBienvenueTextView.setText("Bienvenue " + prenom + " !\n" +
-                        "Votre dernier score était : " + score + ", arriverez-vous à le battre ?");
+                mBienvenueTextView.setText(getString(R.string.welcome_back_with_score, prenom, score));
             }else{
-                mBienvenueTextView.setText("Bienvenue " + prenom + " !");
+                mBienvenueTextView.setText(getString(R.string.welcome_back, prenom));
             }
 
             mPrenomEditText.setText(prenom);

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TestAndroid</string>
+    <string name="welcome_back_with_score">Bon retour, %s!\nTon dernier score était : %d, allez-vous le battre?</string>
+    <string name="welcome_back">Bon retour, %s!</string>
 </resources>
