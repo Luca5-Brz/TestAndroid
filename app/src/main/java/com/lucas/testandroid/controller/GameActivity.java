@@ -21,7 +21,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Button mAnswer2Button;
     private Button mAnswer3Button;
     private Button mAnswer4Button;
-    private QuestionBank mQuestionBank = generateQuestions();
+    private final QuestionBank mQuestionBank = generateQuestions();
 
     //gestion du nombre de question
     private int mRemainingQuestionCount;
@@ -68,7 +68,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         );
 
         Question question2 = new Question(
-                "Quand à atterri le premier home sur la lune ?",
+                "Quand à atteri le premier home sur la lune ?",
                 Arrays.asList(
                         "1958",
                         "1962",
@@ -132,7 +132,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mAnswer3Button.setText(question.getChoiceList().get(2));
         mAnswer4Button.setText(question.getChoiceList().get(3));
 
-    };
+    }
 
     @Override
     public void onClick(View v) {
@@ -180,6 +180,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public void endGame(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
+        //noinspection Convert2Lambda
         builder.setTitle("Bien joué !")
                 .setMessage("Votre score est : " + mScore)
                 .setCancelable(false)

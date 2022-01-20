@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mPrenomEditText;
     private Button mPlayButton;
 
-    private User mUser;
+    //private User mUser;
 
     private static final int GAME_ACTIVITY_REQUEST_CODE = 42;
 
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         mPlayButton.setEnabled(false);
 
-        String mPrenom = getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE).getString(SHARED_PREF_USER_INFO_NAME,null);
+        //String mPrenom = getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE).getString(SHARED_PREF_USER_INFO_NAME,null);
 
         mPrenomEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mPlayButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v){
                 getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE)
@@ -74,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 //startActivity(gameActivity);
                 startActivityForResult(gameActivity, GAME_ACTIVITY_REQUEST_CODE);
 
-                mUser.setFirstName(mPrenomEditText.getText().toString());
+                //mUser.setFirstName(mPrenomEditText.getText().toString());
 
             }
 
