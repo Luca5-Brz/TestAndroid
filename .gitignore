@@ -12,8 +12,8 @@
 /captures
 .externalNativeBuild
 .cxx
-local.properties
-gradle.properties
+#local.properties
+#gradle.properties
 .idea/tasks.xml
 .idea/.name
 .idea/compiler.xml
