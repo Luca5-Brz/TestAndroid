@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //noinspection Convert2Lambda
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
