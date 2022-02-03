@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.*;
 
@@ -22,15 +24,17 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Button mAnswer3Button;
     private Button mAnswer4Button;
     private final QuestionBank mQuestionBank = generateQuestions();
-
     //gestion du nombre de question
     private int mRemainingQuestionCount;
-
     //gestion du score
     private int mScore;
-
     public static final String BUNDLE_EXTRA_SCORE = "BUNDLE_EXTRA_SCORE";
+    private boolean mEnableTouchEvents;
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return mEnableTouchEvents && super.dispatchTouchEvent(ev);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         displayQuestion(mQuestionBank.getCurrentQuestionIndex());
 
+        mEnableTouchEvents=true;
+
         mRemainingQuestionCount = 4;
+        mScore=0;
 
     }
 
@@ -164,16 +171,26 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this,"Incorrect !", Toast.LENGTH_SHORT).show();
         }
 
-        //Suite du jeu ou pas
-        mRemainingQuestionCount --;
-        
-        if(mRemainingQuestionCount > 0){
 
-            displayQuestion(mQuestionBank.getNextQuestionIndex());
-        }
-        else{
-            endGame();
-        }
+        mEnableTouchEvents=false;
+
+        //Suite du jeu ou pas
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mRemainingQuestionCount --;
+
+                if(mRemainingQuestionCount > 0){
+
+                    displayQuestion(mQuestionBank.getNextQuestionIndex());
+                }
+                else{
+                    endGame();
+                }
+
+                mEnableTouchEvents=true;
+            }
+        },2000);
 
     }
 
